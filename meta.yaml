@@ -1,0 +1,37 @@
+{% set version = "0.2.1" %}
+
+package:
+  name: bioformats2raw
+  version: "{{ version }}{{ environ.get('VERSION_SUFFIX', '') }}"
+
+source:
+  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version }}/bioformats2raw-{{ version }}.zip
+  sha256: b87048048fd7584585eb1a2002936eb65dd4de72e71bffbb54f9dd6c35488c85
+
+build:
+  noarch: generic
+  number: 0
+  script_env:
+    - VERSION_SUFFIX
+
+requirements:
+  build:
+    - openjdk >=8
+  run:
+    - blosc
+    - openjdk >=8
+    - python
+
+test:
+  commands:
+    - bioformats2raw -help
+
+about:
+  home: https://github.com/glencoesoftware/bioformats2raw
+  license: GPL2
+  license_file: LICENSE.txt
+  summary: Bio-Formats image file format to raw format converter
+
+extra:
+  recipe-maintainers:
+    - ome
