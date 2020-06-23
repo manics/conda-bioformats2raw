@@ -1,19 +1,25 @@
+{% set version = "0.2.2" %}
+
 package:
   name: "bioformats2raw"
-  version: "0.2.2"
+  version: "{{ version }}"
 
 build:
-  number: 5
+  noarch: python
+  number: 6
 
 source:
-  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v0.2.2/bioformats2raw-0.2.2.zip
+  url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version }}/bioformats2raw-{{ version }}.zip
   sha256: e7b8299933d4a4ae54ab1bc52d87531b67db34078cb184e94727a2f8604df792
 
 requirements:
   host:
+    - pip
+    - python
   run:
     - blosc
-    - openjdk
+    - openjdk >=8
+    - python
 
 test:
   commands:
