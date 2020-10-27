@@ -1,0 +1,15 @@
+on:
+  pull_request:
+  push:
+
+jobs:
+  conda-build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install conda build
+        run: conda install -y -q conda-build
+      - name: Conda build
+        run: conda build .
