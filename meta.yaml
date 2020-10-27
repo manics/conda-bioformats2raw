@@ -5,16 +5,22 @@ package:
 
 build:
   number: 0
+  noarch: python
+  script: "{{ PYTHON }} {{ RECIPE_DIR }}/build.py"
+  entry_points:
+    - bioformats2raw = bioformats2raw_wrapper:main
 
 source:
   url: https://github.com/glencoesoftware/bioformats2raw/releases/download/v{{ version }}/bioformats2raw-{{ version }}.zip
   sha256: 3845453e495f118783d13122eba8a3997a45bef82ac4f08c711b8deae22ef8b2
 
 requirements:
-  host:
+  build:
+    - python=3
   run:
     - blosc
     - openjdk
+    - python=3
 
 test:
   commands:
